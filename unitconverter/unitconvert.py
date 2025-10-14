@@ -2,52 +2,36 @@ import sys
 
 halp = """\nUsed as 'python ./converter.py number-value unit'
         'python ./converter.py 32 f' #Converts 32 degrees Fahrenheit
-        'python ./converter.py 42 ly' #Converts 42 Light Year
+        'python ./converter.py 42 ly' #Converts 42 Light Years
 
-        Distance and Length:
-        Millimeters = mm
-        Centimeters = cm
-        Inches = in
-        Feet = ft
-        Yards = yd
-        Meters = m
-        Kilometers = km
-        Miles = mi
-        Nautical Miles = nmi
-        Astronomical Units = au
-        Lightyears = ly
-        Parsecs = pc
-
-        Mass:
+        Distance and Length:          Volume:
+        Millimeters = mm              Milliliters = ml
+        Centimeters = cm              Teaspoons = tsp
+        Inches = in                   Tablespoons = tbsp
+        Feet = ft                     Cubic Inches = in3
+        Yards = yd                    Fluid Ounces = floz
+        Meters = m                    Shots = sh
+        Kilometers = km               Cups = cu
+        Miles = mi                    Pints = pt
+        Nautical Miles = nmi          Fifths = fif
+        Astronomical Units = au       Quarts = qt
+        Lightyears = ly               Liters = l
+        Parsecs = pc                  Gallons = gal
+                                      Cubic Feet = ft3
+        Mass:                         Cubic Meters = m3
         Milligrams = mg
-        Grams = g
-        Kilograms = kg
-        Ounces = oz
-        Pounds = lb
-        Short Tons = st
-        Long Tons = lt
-        Metric Tons = mt
-
-        Temperature:
-        Celsius = c
+        Grams = g                     Data in Bytes:
+        Kilograms = kg                Bytes = b
+        Ounces = oz                   Kilobytes = kb
+        Pounds = lb                   Megabytes = mb
+        Short Tons = st               Gigabytes = gb
+        Long Tons = lt                Terabytes = tb
+        Metric Tons = mt              Petabytes = pb
+                                      Exabytes = eb
+        Temperature:                  Zettabytes = zb
+        Celsius = c                   Yoyyabytes = yb
         Fahrenheit = f
         Kelvin = k
-
-        Volume:
-        Milliliters = ml
-        Teaspoons = tsp
-        Tablespoons = tbsp
-        Cubicinches = in3
-        Fluidounces = floz
-        Shots = sh
-        Cups = cu
-        Pints = pt
-        Fifths = fif
-        Quarts = qt
-        Liters = l
-        Gallons = gal
-        Cubic Feet = ft3
-        Cubic Meters = m3
         """
 #Mass
 def milligrams(mg):
@@ -608,6 +592,123 @@ def cubicmeters(m3):
     }
   mainconvert(m3, "Cubic Meter", conversions)
 
+def bytez(b):
+  conversions = {
+    "Kilobytes": (b / 1024, 4),
+    "Megabytes": (b / 1048576, 8),
+    "Gigabytes": (b / 1073741824, 12),
+    "Terabytes": (b / 1099511627776, 14),
+    "Petabytes": (b / 1125899906842624, 16),
+    "Exabytes": (b / 1152921504606846976, 20),
+    "Zettabytes": (b / 1180591620717411303424, 22),
+    "Yottabytes": (b / 1208925819614629174706176, 24),
+    }
+  mainconvert(b, "Byte", conversions)
+
+def kilobytes(kb):
+    conversions = {
+      "Bytes": (kb * 1024, 1),
+      "Megabytes": (kb / 1024, 6),
+      "Gigabyes": (kb / 1048576, 8),
+      "Terabytes": (kb / 1073741824, 12),
+      "Petabytes": (kb / 1099511627776, 14),
+      "Exabytes": (kb / 1125899906842624, 18),
+      "Zettabytes": (kb / 1152921504606846976, 20),
+      "Yottabyes": (kb / 1180591620717411303424, 24)
+      }
+    mainconvert(kb, "Kilobyte", conversions)
+
+def megabytes(mb):
+    conversions = {
+      "Bytes": (mb * 1048576, 1),
+      "Kilobytes": (mb * 1024, 1),
+      "Gigabyes": (mb / 1024, 6),
+      "Terabytes": (mb / 1048576, 8),
+      "Petabytes": (mb / 1073741824, 12),
+      "Exabytes": (mb / 1099511627776, 16),
+      "Zettabytes": (mb / 1125899906842624, 18),
+      "Yottabyes": (mb / 1152921504606846976, 20)
+      }
+    mainconvert(mb, "Megabyte", conversions)
+
+def gigabytes(gb):
+    conversions = {
+      "Bytes": (gb * 1073741824, 1),
+      "Kilobytes": (gb * 1048576, 1),
+      "Megabyes": (gb * 1024, 1),
+      "Terabytes": (gb / 1024, 4),
+      "Petabytes": (gb / 1048576, 8),
+      "Exabytes": (gb / 1073741824, 12),
+      "Zettabytes": (gb / 1099511627776, 14),
+      "Yottabyes": (gb / 1125899906842624, 18)
+      }
+    mainconvert(gb, "Gigabyte", conversions)
+
+def terabytes(tb):
+    conversions = {
+      "Bytes": (tb * 1099511627776, 1),
+      "Kilobytes": (tb * 1073741824, 1),
+      "Megabytes": (tb * 1048576, 1),
+      "Gigabytes": (tb * 1024, 1),
+      "Petabytes": (tb / 1024, 4),
+      "Exabytes": (tb / 1048576, 8),
+      "Zettabytes": (tb / 1073741824, 12),
+      "Yottabyes": (tb / 1099511627776, 14)
+      }
+    mainconvert(tb, "Terabyte", conversions)
+
+def petabytes(pb):
+    conversions = {
+      "Bytes": (pb * 1125899906842624, 1),
+      "Kilobytes": (pb * 1099511627776, 1),
+      "Megabytes": (pb * 1073741824, 1),
+      "Gigabytes": (pb * 1048576, 1),
+      "Terabytes": (pb * 1024, 1),
+      "Exabytes": (pb / 1024, 4),
+      "Zettabytes": (pb / 1048576, 8),
+      "Yottabyes": (pb / 1073741824, 12)
+      }
+    mainconvert(pb, "Petabyte", conversions)
+
+def exabytes(eb):
+    conversions = {
+      "Bytes": (eb * 1152921504606846976, 1),
+      "Kilobytes": (eb * 1125899906842624, 1),
+      "Megabytes": (eb * 1099511627776, 1),
+      "Gigabytes": (eb * 1073741824, 1),
+      "Terabytes": (eb * 1048576, 1),
+      "Petabytes": (eb * 1024, 1),
+      "Zettabytes": (eb / 1024, 4),
+      "Yottabyes": (eb / 1048576, 8)
+      }
+    mainconvert(eb, "Exabyte", conversions)
+
+def zettabytes(zb):
+    conversions = {
+      "Bytes": (zb * 1180591620717411303424, 1),
+      "Kilobytes": (zb * 1152921504606846976, 1),
+      "Megabytes": (zb * 1125899906842624, 1),
+      "Gigabytes": (zb * 1099511627776, 1),
+      "Terabytes": (zb * 1073741824, 1),
+      "Petabytes": (zb * 1048576, 1),
+      "Exabytes": (zb * 1024, 1),
+      "Yottabyes": (zb / 1024, 4)
+      }
+    mainconvert(zb, "Zettabyte", conversions)
+
+def yottabytes(yb):
+    conversions = {
+      "Bytes": (yb * 1208925819614629174706176, 1),
+      "Kilobytes": (yb * 1180591620717411303424, 1),
+      "Megabytes": (yb * 1152921504606846976, 1),
+      "Gigabytes": (yb * 1125899906842624, 1),
+      "Terabytes": (yb * 1099511627776, 1),
+      "Petabytes": (yb * 1073741824, 1),
+      "Exabytes": (yb * 1048576, 1),
+      "Zettabyes": (yb * 1024, 1)
+      }
+    mainconvert(yb, "Yottabyte", conversions)
+
 def mainconvert(uservalue, userunit, conversions):
   if uservalue == 1 and userunit == "Feet":
     print(f"{uservalue} Foot is:")
@@ -658,7 +759,16 @@ functions = {
   "gal":gallons,
   "ft3":cubicfeet,
   "m3":cubicmeters,
-  }
+  "b":bytez,
+  "kb":kilobytes,
+  "mb":megabytes,
+  "gb":gigabytes,
+  "tb":terabytes,
+  "pb":petabytes,
+  "eb":exabytes,
+  "zb":zettabytes,
+  "yb":yottabytes
+}
 
 try:
   if sys.argv[1] == "-h" or sys.argv[1] == "h":
